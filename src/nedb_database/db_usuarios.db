@@ -1,0 +1,7 @@
+{"nombre":"Alejandro","password":"ghostrider","email":"camgrafiman@gmail.com","cumpleanos":"1987-09-17","pais":"ES","zip":"28039","hijos":"0","_id":"BxwkF0aqKgDNBq4y"}
+{"nombre":"test","password":"pass1234","email":"test@mail.com","cumpleanos":"1985-05-04","pais":"ES","zip":"15488","hijos":"1","_id":"JJthEw7xarmHT7fC","createdAt":{"$$date":1602014516779},"updatedAt":{"$$date":1602014516779}}
+{"nombre":"Ernesto","password":"ernesto12","email":"ernest@hotmail.com","cumpleanos":"1985-08-05","pais":"ES","zip":"28038","hijos":"0","_id":"K7kD7kFDjoljhGzX","createdAt":{"$$date":1602013665732},"updatedAt":{"$$date":1602013665732}}
+{"nombre":"Ernesto","password":"ernesto12","email":"ernest@hotmail.com","cumpleanos":"1985-08-05","pais":"ES","zip":"28038","hijos":"0","_id":"SDRRJKmevf3FxOiU","createdAt":{"$$date":1602013758878},"updatedAt":{"$$date":1602013758878}}
+{"nombre":"Islena","password":"mice1763","email":"islena@hotmail.com","cumpleanos":"1967-06-01","pais":"ES","zip":"28017","hijos":"1","_id":"gWZWHDycvUcHhQGD","createdAt":{"$$date":1602013225136},"updatedAt":{"$$date":1602013225136}}
+{"nombre":"Yvonne","password":"mylove","email":"ivon_dim@msn.com","cumpleanos":"1992-04-10","pais":"ES","zip":"28039","hijos":"0","_id":"leKVRlnN7ImOIZ62"}
+{"nombre":"test","password":"yure12","email":"test@gmail.com","cumpleanos":"1990-05-09","pais":"ES","zip":"20014","hijos":"2","_id":"wlIKcPPZm6HpAaBP","createdAt":{"$$date":1602012826048},"updatedAt":{"$$date":1602012826048}}

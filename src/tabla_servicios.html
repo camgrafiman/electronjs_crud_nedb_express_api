@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tabla de Servicios</title>
+    <link rel="stylesheet" href="./librerias/bootstrap4/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./librerias/fontAwesome/all.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-table/dist/bootstrap-table.min.css">
+
+    <link rel="stylesheet" href="estilos/estilos.css">
+
+</head>
+
+<body>
+    <div class="container mt-2 mb-2">
+        <form>
+            <!-- <button class="btn btn-primary">Submit</button> -->
+            <div id="toolbar" class="select">
+                <select class="form-control" name="exportador" id="exportador">
+                    <option value="">Exportar</option>
+                    <option value="all">Exportar todo</option>
+                    <option value="selected">Exportar seleccionados</option>
+                </select>
+            </div>
+
+            <table id="tabla_servicios" data-toggle="table" data-pagination="true" data-search="true" data-show-footer="true" data-show-columns="true" data-toolbar="#toolbar" data-show-print="false" data-show-export="true" data-click-to-select="true">
+                <thead>
+                    <tr>
+                        <!-- <th rowspan="2" data-checkbox="true" data-valign="middle"></th> -->
+                        <th colspan="12" data-align="center">SERVICIOS ACTUALES COHEM</th>
+                    </tr>
+                    <tr>
+                        <th data-field="state" data-checkbox="true" data-visible="false"></th>
+                        <th data-radio="true" data-visible="false"></th>
+                        <th data-field="_id" data-sortable="false" data-visible="false">ID</th>
+                        <th data-field="nombre_servicio" data-sortable="true" data-footer-formatter="nameFormatter">Nombre de servicio</th>
+                        <!-- <th data-field="categoria" data-sortable="true">Cat</th> -->
+                        <th data-field="nombre_categoria" data-sortable="true">Categoría</th>
+                        <th data-field="codigo_servicio" data-sortable="true">Cód. Servicio</th>
+                        <th data-field="precio_servicio" data-sortable="true">Precio</th>
+                        <!-- <th data-field="numero_servicio" data-sortable="false">Nº</th> -->
+                        <th data-field="iva" data-sortable="true">% IVA</th>
+                        <th data-field="precio_con_iva" data-sortable="true" data-footer-formatter="priceFormatter">Precio total servicio</th>
+                        <th data-field="tiempo.fecha" data-sortable="true">Fecha</th>
+                        <th data-field="tiempo.hora" data-sortable="true">Hora</th>
+                        <th data-field="accion" data-formatter="formatear">Acción</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </form>
+    </div>
+
+</body>
+
+
+
+<script src="./librerias/bootstrap4/cargar_bs4_jquery.js"></script>
+<!-- <script>
+    window.jsPDF = require('./librerias/jqueryPlugins/jspdf.min.js');
+    require('./librerias/jqueryPlugins/jspdf.plugin.autotable.min.js');
+</script> -->
+<!-- <script>
+    const {
+        jsPDF
+    } = require('jspdf');
+    const jspdfAutotable = require('jspdf-autotable');
+</script> -->
+<!-- <script src="./librerias/jqueryPlugins/jspdf.min.js"></script> -->
+<!-- <script src="./librerias/jqueryPlugins/jspdf.plugin.autotable.min.js"></script> -->
+<script>
+    require('bootstrap-table');
+</script>
+<script src="../node_modules/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js"></script>
+<script src="./librerias/jqueryPlugins/tableExport.min.js"></script>
+<!-- <script>
+    require('./librerias/jqueryPlugins/jspdf.min.js');
+</script> -->
+
+<script src="./librerias/jqueryPlugins/bootstrap-table-print.min.js"></script>
+<script src="./librerias/jqueryPlugins/bootstrap-table-export.min.js"></script>
+
+<script src="./librerias/underscore/underscore-min.js"></script>
+<script src="./librerias/moment/moment.min.js"></script>
+<script>
+    var validate = require("validate.js");
+</script>
+<script>
+    require('./tabla_servicios.js');
+</script>
+<script>
+    const BrowserWindow = require('electron').remote.BrowserWindow;
+    const {
+        dialog
+    } = require('electron').remote;
+    const axios = require('axios').default;
+
+    function idFormatter() {
+        return 'Total'
+    }
+
+    function nameFormatter(data) {
+        return "Total servicios: " + data.length
+    }
+
+    function priceFormatter(data) {
+        var field = this.field
+            // return '$' + data.map(function(row) {
+            //     return +row[field].substring(1)
+            // }).reduce(function(sum, i) {
+            //     return sum + i
+            // }, 0)
+        return 'Total: €' + data.map(function(row) {
+            return +row[field]
+        }).reduce(function(a, b) {
+            return Number(a) + Number(b);
+        }, 0).toFixed(2);
+    }
+
+    var tabla = $('#tabla_servicios');
+
+    $('select').on('change', function() {
+        if ($(this).val() == 'selected') {
+            tabla.bootstrapTable('showColumn', 'state');
+        } else {
+            tabla.bootstrapTable('hideColumn', 'state');
+        }
+        tabla.bootstrapTable({
+            exportDataType: $(this).val(),
+            exportTypes: ['excel', 'pdf']
+        })
+    })
+
+    // $(function() {
+    //     $('form').submit(function() {
+    //         alert($(this).serialize())
+    //         return false
+    //     })
+    // });
+
+    function formatear(index, row) {
+        var html = [];
+        $.each(row, function(key, value) {
+            // console.log(key);
+            if (key == '_id') {
+                html.push('<a class="edit" data-href="?edit=' + value + '" title="editar"><i class="fa fa-edit"> </i></a>');
+                html.push('<a class="remove" href="#" onclick="funcionEliminarDato(' + "'" + value + "'" + ');return false;" ;" title="Eliminar"><i class="fa fa-trash " style="color: red;"> </i></a>');
+            }
+        })
+        return html.join('');
+    }
+
+    function funcionEliminarDato(valor) {
+        console.log("click", valor);
+        let servicioElegido = document.getElementById(valor);
+        let nombreServicio = servicioElegido.childNodes["1"].innerText;
+        dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+            title: 'Eliminar',
+            type: 'warning',
+            buttons: ['Sí', 'Cancelar', 'No'],
+            defaultId: 2,
+            buttonLabel: 'Eliminar',
+            message: '¿Desea eliminar este servicio?',
+            detail: nombreServicio + ' se eliminará de la base de datos.'
+        }).then((respuesta) => {
+
+            let res = respuesta.response;
+            if (res === 0) {
+                async function eliminar() {
+                    await axios.delete('http://localhost:8080/servicios/' + valor).then((res) => {
+                        console.info(res.status + " | " + nombreServicio + " ha sido eliminado");
+                        $('#tabla_servicios').bootstrapTable('refresh');
+                    });
+                }
+                eliminar();
+
+            }
+
+        });
+        //#\33 VN08gQV1QDcvQo3 > td:nth-child(2)
+        // Preguntar si quiere eliminar el dato.
+
+        // si true: axios.delete y refrescar la tabla.
+
+        // si false: 
+    }
+</script>
+
+</html>

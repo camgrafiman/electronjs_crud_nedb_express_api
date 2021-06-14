@@ -1,0 +1,9 @@
+DELETE http://localhost:8080/servicios/02HIUkhpQb78kk6O
+Content-Type: application/json
+
+# GET http://localhost:8080/hello?$filter=Color $eq verde
+# GET http://localhost:8080/hello?$filter=Categoria $eq Administrador
+# GET http://localhost:8080/servicios?$filter=nombre_categoria $eq Cortes
+
+# {"Autor": "Delia", "Categoria": "Usuario", "Color": "marron", "codigo": 83332}
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="photon/photon.min.css">
+    <link rel="stylesheet" href="estilos/estilos.css">
+</head>
+
+<body>
+    <div class="mainWrapper">
+        <h1>CRUD: Crear archivos en la carpeta archivos:</h1>
+        <form action="">
+            <div class="form-group">
+                <label for="text1">Nombre de archivo</label>
+                <input class="form-control" type="text" id="nombreArchivo">
+            </div>
+            <div class="form-group">
+                <label for="text2">Contenidos</label>
+                <textarea class="form-control" name="contenido" id="contenidoArchivo" rows="5"></textarea>
+            </div>
+
+        </form>
+        <button id="btnCrear" class="btn btn-default">Crear</button>
+        <button id="btnLeer" class="btn btn-default">Leer</button>
+        <button id="btnEliminar" class="btn btn-default">Eliminar</button>
+
+        <button id="btnVentana">Abrir ventana</button>
+        <button id="btnGet" class="btn btn-default">GET Datos</button>
+        <button id="btnProductos" class="btn btn-default">Consultar productos</button>
+    </div>
+
+</body>
+<script>
+    require('./index.js');
+</script>
+
+</html>

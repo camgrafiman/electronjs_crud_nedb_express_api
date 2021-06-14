@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar servicio</title>
+    <link rel="stylesheet" href="./librerias/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./librerias/bootstrap/bootstrap-theme.min.css">
+    <script src="./librerias/underscore/underscore-min.js"></script>
+    <script src="./librerias/moment/moment.min.js"></script>
+    <script>
+        var validate = require("validate.js");
+    </script>
+    <link rel="stylesheet" href="estilos/estilos.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Agregar servicio</h1>
+        <form id="servicios" class="form-horizontal" action="/servicios" method="post" novalidate>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="nombre_servicio">Nombre de servicio</label>
+                <div class="col-sm-5">
+                    <input id="nombre_servicio" class="form-control" type="text" placeholder="Corte Señora..." name="nombre_servicio">
+                </div>
+                <div class="col-sm-5 messages">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="categoria">Categoría</label>
+                <div class="col-sm-5">
+                    <select id="categoria" class="form-control" name="categoria">
+                <option value=""></option>
+                <option value="A" data-catnombre="Lavados">Lavados</option>
+                <option value="B" data-catnombre="Tratamientos y lociones">Tratamientos y lociones</option>
+                <option value="C" data-catnombre="Cortes">Cortes</option>
+                <option value="P" data-catnombre="Peinados">Peinados</option>
+                <option value="T" data-catnombre="Tecnicos">Técnicos</option>
+                <option value="Y" data-catnombre="Manicura">Manicura</option>
+                <option value="Z" data-catnombre="Estetica">Estética</option>
+                <option value="O" data-catnombre="Otros">Otros</option>
+              </select>
+                </div>
+                <div class="col-sm-5 messages"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="numero_servicio">Número de servicio</label>
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <span class="input-group-addon " id="valor_categoria">A</span>
+                        <input id="numero_servicio" class="form-control" type="number" placeholder="1" name="numero_servicio">
+                    </div>
+                    <div class="col-sm-5 messages"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="precio_servicio">Precio del servicio</label>
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <input id="precio_servicio" class="form-control" type="number" placeholder="18.95" min="0.00" step="0.01" name="precio_servicio">
+                        <span class="input-group-addon">€</span>
+                    </div>
+
+                </div>
+                <div class="col-sm-5 messages">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="iva">% IVA</label>
+                <div class="col-sm-5">
+                    <input id="iva" class="form-control" type="number" placeholder="21" name="iva">
+                </div>
+                <div class="col-sm-5 messages"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="total">Precio total</label>
+                <div class="col-sm-5">
+                    <input id="total" class="form-control" type="number" name="total" disabled="true">
+                </div>
+                <div class="col-sm-5 messages"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Agregar Servicio</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <div class="alert alert-success fade show" role="alert">
+                        El servicio se ha creado correctamente.
+                    </div>
+                    <div class="alert alert-danger fade show" role="alert">
+                        Ha habido un problema al crear el servicio.
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script>
+    require('./agregar_servicio.js');
+</script>
+
+</html>

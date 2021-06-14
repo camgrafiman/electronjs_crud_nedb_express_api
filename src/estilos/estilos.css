@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    color: blue;
+}
+
+.mainWrapper {
+    margin: 25px;
+}
+
+.input-group-addon {
+    min-width: 20%;
+    text-align: left;
+}
